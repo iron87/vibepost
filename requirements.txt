@@ -1,0 +1,9 @@
+llama-index-core
+llama-index-embeddings-openai
+llama-index-llms-openai
+llama-index-utils-workflow
+llama-index-llms-ollama
+python-dotenv==1.0.1
+#gh-md-to-html[pdf_export]
+#google-search-results==2.4.2
+sqlalchemy
