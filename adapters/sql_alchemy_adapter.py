@@ -14,10 +14,6 @@ class SQLAlchemyDatabase(DatabasePort):
         self.db.add(post)
         self.db.commit()
 
-    def get_business_info(self, business_id: int) -> dict:
+    def get_business_info(self, business_id: int) -> Business:
         business = self.db.query(Business).filter(Business.id == business_id).first()
-        return {
-            "name": business.name,
-            "specialties": business.specialties,
-            "keywords": business.keywords
-        } if business else None
+        return business

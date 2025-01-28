@@ -13,8 +13,8 @@ class PostService(PostCreationPort):
         if not business_info:
             raise ValueError("Business not found")
 
-       # post_content = self.ai_generator.generate_post_text(business_info, user_input)
-        post_content = user_input
+        post_content = self.ai_generator.generate_post_text(business_info, user_input)
+       # post_content = user_input
         self.db.save_post(business_id, post_content, image_url)
 
         return post_content
