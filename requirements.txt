@@ -7,3 +7,4 @@ python-dotenv==1.0.1
 #gh-md-to-html[pdf_export]
 #google-search-results==2.4.2
 sqlalchemy
+python-telegram-bot

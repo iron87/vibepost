@@ -14,6 +14,7 @@ class Business(Base):
     country = Column(String(50))
     phone = Column(String(50))
     email = Column(String(100))
+    telegramid = Column(String(100))
     website = Column(String(255))
     instagram = Column(String(255))
     facebook = Column(String(255))
