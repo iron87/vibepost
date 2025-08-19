@@ -32,3 +32,16 @@ class NotificationSenderPort(ABC):
     @abstractmethod
     def send_post_preview(self, post_content: str, business_contact: str):
         pass
+
+class ImageGeneratorPort(ABC):
+    """Image Generator Port Interface for apitemplate.io."""
+
+    @abstractmethod
+    def generate_image(self, template_id: str, data: dict) -> str:
+        """
+        Generates an image using apitemplate.io and returns the image URL.
+        :param template_id: The apitemplate.io template ID.
+        :param data: The data to fill the template.
+        :return: URL of the generated image.
+        """
+        pass

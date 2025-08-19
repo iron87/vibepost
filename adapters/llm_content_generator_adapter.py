@@ -8,7 +8,7 @@ class LLMContentGeneratorAdapter(AIContentGeneratorPort):
     def __init__(self, model: str, llm_provider: str, llm_api_url: str):
         #TODO: implement using the factory pattern 
         if llm_provider == "ollama":
-            self.llm = Ollama(base_url=llm_api_url, model=model)
+            self.llm = Ollama(base_url=llm_api_url, model=model, temperature=0.1, max_tokens=200)
 
     def generate_post_text(self, business_info: Business, user_input: str) -> str:
         #TODO: improve the prompt
