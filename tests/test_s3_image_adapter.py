@@ -4,7 +4,7 @@ from adapters.s3_image_directory_adapter import S3ImageDirectoryAdapter
 
 class TestS3ImageDirectoryAdapterIntegration(unittest.TestCase):
     def setUp(self):
-        self.bucket_name = "vibepost-images"
+        self.bucket_name = os.environ.get("AWS_S3_BUCKET")
         self.aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
         self.aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
         self.region_name =  "eu-south-1"
