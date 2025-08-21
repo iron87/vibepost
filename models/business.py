@@ -21,6 +21,7 @@ class Business(Base):
     opening_hours = Column(JSON)
     specialties = Column(Text)
     keywords = Column(Text)
+    image_directory = Column(String(255)) 
     created_at = Column(TIMESTAMP, default=datetime.utcnow)
     updated_at = Column(TIMESTAMP, default=datetime.utcnow, onupdate=datetime.utcnow)
 

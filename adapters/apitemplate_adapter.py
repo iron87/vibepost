@@ -8,7 +8,7 @@ class APITemplateImageGeneratorAdapter(ImageGeneratorPort):
         self.api_key = api_key
         self.base_url = "https://rest.apitemplate.io/v2/create-image"
 
-    def generate_image(self, template_id: str, overrides: list) -> str:
+    def generate_image(self, template_id: str, image_link: str, overrides: list) -> str:
         """
         Calls apitemplate.io API v2 to generate an image and returns the image URL.
         :param template_id: The apitemplate.io template ID.
@@ -21,7 +21,9 @@ class APITemplateImageGeneratorAdapter(ImageGeneratorPort):
             "Content-Type": "application/json"
         }
         payload = {
-            "overrides": overrides
+            # every template should have an image field, that is the foreground image
+            # the image link is added to the overrides list
+            "overrides": overrides + [{"name": "image", "src": image_link}] if image_link else []
         }
         response = requests.post(url, json=payload, headers=headers)
         response.raise_for_status()

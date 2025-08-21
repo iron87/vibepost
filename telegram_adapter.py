@@ -1,17 +1,26 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackContext, CallbackQueryHandler
+from telegram.request import HTTPXRequest
 from models.business import Business
 from models.post import Post
 from ports.driven_port import DatabasePort
 from ports.driver_port import PostCreationPort
 from settings import settings
+import httpx
+
 
 class TelegramBotAdapter:
 
     def __init__(self, db_port: DatabasePort, post_creator: PostCreationPort):
         self.db_port = db_port
-        self.post_service = post_creator;
-        self.application = Application.builder().token(settings.TELEGRAM_BOT_TOKEN,).build();
+        self.post_service = post_creator
+        API_BASE_URL = "https://telegram-http-proxy-737748161943.europe-west1.run.app/bot"
+        self.application = (
+            Application.builder()
+            .token(settings.TELEGRAM_BOT_TOKEN)
+            .base_url(API_BASE_URL)
+            .build()
+        )
         self.application.add_handler(CommandHandler("start", self.start))
         self.application.add_handler(CommandHandler("post", self.create_post))
         self.application.add_handler(CallbackQueryHandler(self.button_callback))
